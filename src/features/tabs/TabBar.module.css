@@ -1,0 +1,101 @@
+.tabs {
+  flex: 1;
+  min-width: 0;
+  align-self: stretch;
+  display: flex;
+  align-items: stretch;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tab {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  max-width: 220px;
+  padding: 0 var(--space-1) 0 var(--space-3);
+  color: var(--text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: background var(--motion-fast) var(--ease-out);
+}
+
+.tab:hover {
+  background: var(--bg-hover);
+}
+
+.tab[data-active] {
+  color: var(--text);
+  border-bottom-color: var(--accent);
+}
+
+.label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.close {
+  position: relative;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: calc(var(--space-5) - var(--space-1));
+  height: calc(var(--space-5) - var(--space-1));
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.close:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
+.dot,
+.x {
+  grid-area: 1 / 1;
+  display: grid;
+  place-items: center;
+}
+
+.dot {
+  width: var(--space-2);
+  height: var(--space-2);
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0;
+}
+
+.x {
+  opacity: 0;
+}
+
+/* Idle: only the active tab shows an x. Dirty: the dot replaces it until hover or focus. */
+.tab[data-active] .x,
+.tab:hover .x,
+.close:focus-visible .x {
+  opacity: 1;
+}
+
+.tab[data-dirty] .dot {
+  opacity: 1;
+}
+
+.tab[data-dirty] .x {
+  opacity: 0;
+}
+
+.tab[data-dirty]:hover .dot,
+.tab[data-dirty] .close:focus-visible .dot {
+  opacity: 0;
+}
+
+.tab[data-dirty]:hover .x,
+.tab[data-dirty] .close:focus-visible .x {
+  opacity: 1;
+}

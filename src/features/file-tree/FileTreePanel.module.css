@@ -1,0 +1,148 @@
+.empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.header {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: var(--tabbar-height);
+  padding: 0 var(--space-2) 0 var(--space-3);
+  border-bottom: 1px solid var(--border);
+}
+
+.rootName {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.iconButton {
+  display: grid;
+  place-items: center;
+  width: calc(var(--space-5) + var(--space-1));
+  height: calc(var(--space-5) + var(--space-1));
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background var(--motion-fast) var(--ease-out);
+}
+
+.iconButton:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
+.iconButton[aria-pressed='true'] {
+  color: var(--accent);
+}
+
+.error {
+  padding: var(--space-2) var(--space-3);
+  color: var(--danger);
+  font-size: var(--font-size-small);
+}
+
+.note {
+  padding: var(--space-2) var(--space-3);
+  color: var(--text-muted);
+}
+
+.tree {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: var(--space-2) var(--space-1);
+}
+
+.row {
+  --indent: var(--space-4);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: var(--tree-row-height);
+  padding-left: calc(var(--space-1) + var(--depth) * var(--indent));
+  padding-right: var(--space-2);
+  border-radius: var(--radius-control);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* Indent guides: one hairline per ancestor level, centred under that level's chevron. */
+.row::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--space-1) + var(--space-2));
+  width: calc(var(--depth) * var(--indent));
+  background: repeating-linear-gradient(
+    to right,
+    var(--border) 0 1px,
+    transparent 1px var(--indent)
+  );
+  pointer-events: none;
+}
+
+.row:hover {
+  background: var(--bg-hover);
+}
+
+.row[data-active] {
+  background: var(--accent-soft);
+}
+
+.row:focus-visible {
+  outline-offset: -2px;
+}
+
+.row[data-hidden] {
+  opacity: 0.55;
+}
+
+.chevron {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: var(--space-4);
+  color: var(--text-muted);
+  transition: transform var(--motion-fast) var(--ease-out);
+}
+
+.chevron[data-open] {
+  transform: rotate(90deg);
+}
+
+.icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  color: var(--text-muted);
+}
+
+.icon[data-kind='dir'] {
+  color: var(--accent);
+}
+
+.name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

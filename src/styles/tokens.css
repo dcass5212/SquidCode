@@ -1,0 +1,111 @@
+/* Design tokens. Components use these only — no literal colors or spacing elsewhere. */
+
+:root {
+  color-scheme: light;
+
+  /* Color roles — light */
+  --bg: #fafaf9;
+  --bg-subtle: #f3f3f1;
+  --bg-hover: #ebebe8;
+  --border: #e2e2de;
+  --text: #26272b;
+  --text-muted: #666971;
+  --accent: #4a56d0;
+  --accent-contrast: #fafaf9;
+  --danger: #c0352b;
+  --selection: rgb(74 86 208 / 0.2);
+  /* Soft tint for the current item; resolves against whichever --accent is active. */
+  --accent-soft: color-mix(in srgb, var(--accent) 16%, transparent);
+
+  /* Syntax colors (editor + code blocks) */
+  --syntax-keyword: #8a3fb0;
+  --syntax-string: #1f7a4d;
+  --syntax-number: #a0541a;
+  --syntax-comment: #6b6e76;
+  --syntax-function: #2a5db0;
+  --syntax-type: #0f7285;
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  /* Radius */
+  --radius-control: 6px;
+  --radius-panel: 10px;
+
+  /* Type */
+  --font-ui: 'Segoe UI Variable Text', 'Segoe UI', Inter, system-ui, sans-serif;
+  --font-mono: 'Cascadia Code', 'JetBrains Mono', Consolas, monospace;
+  --font-size-ui: 13px;
+  /* Overridden at runtime by the font-size setting. */
+  --editor-font-size: 13px;
+  --font-size-small: 12px;
+  --font-size-title: 15px;
+  --line-height-ui: 1.5;
+
+  /* Shell dimensions */
+  --sidebar-width: 260px;
+  --tabbar-height: 36px;
+  --statusbar-height: 24px;
+  --tree-row-height: 26px;
+
+  /* Motion */
+  --motion-fast: 120ms;
+  --motion-base: 180ms;
+  --ease-out: cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+/* Dark set, applied by system preference unless the user forced light. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --bg: #121316;
+    --bg-subtle: #191a1e;
+    --bg-hover: #222328;
+    --border: #2b2c33;
+    --text: #e4e5e8;
+    --text-muted: #9b9ea8;
+    --accent: #8f99f2;
+    --accent-contrast: #121316;
+    --danger: #f07167;
+    --selection: rgb(143 153 242 / 0.28);
+    --syntax-keyword: #c79bf0;
+    --syntax-string: #8fd19e;
+    --syntax-number: #f0b27a;
+    --syntax-comment: #8b8e98;
+    --syntax-function: #8cb4f5;
+    --syntax-type: #6fd0e0;
+  }
+}
+
+/* Dark set, applied when the user forced dark. Keep in sync with the block above. */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #121316;
+  --bg-subtle: #191a1e;
+  --bg-hover: #222328;
+  --border: #2b2c33;
+  --text: #e4e5e8;
+  --text-muted: #9b9ea8;
+  --accent: #8f99f2;
+  --accent-contrast: #121316;
+  --danger: #f07167;
+  --selection: rgb(143 153 242 / 0.28);
+  --syntax-keyword: #c79bf0;
+  --syntax-string: #8fd19e;
+  --syntax-number: #f0b27a;
+  --syntax-comment: #8b8e98;
+  --syntax-function: #8cb4f5;
+  --syntax-type: #6fd0e0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion-base: 0ms;
+  }
+}

@@ -1,0 +1,48 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: var(--selection);
+}
+
+.dialog {
+  width: min(420px, calc(100vw - var(--space-6)));
+  padding: var(--space-5);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+  background: var(--bg);
+}
+
+.title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--font-size-title);
+  font-weight: 600;
+}
+
+.message {
+  margin: 0 0 var(--space-4);
+  color: var(--text-muted);
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+
+.danger {
+  color: var(--danger);
+}
+
+/* Only the default action keeps the filled accent look. */
+.buttons > button:not([data-primary]) {
+  background: var(--bg-subtle);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.buttons > button.danger:not([data-primary]) {
+  color: var(--danger);
+}

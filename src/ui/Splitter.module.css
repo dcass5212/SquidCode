@@ -1,0 +1,34 @@
+/* Wider than it looks so it is easy to grab; the visible line is the ::after. */
+.splitter {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: calc(var(--space-1) * -1);
+  width: calc(var(--space-1) * 2);
+  cursor: col-resize;
+  touch-action: none;
+  z-index: 1;
+}
+
+.splitter::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity var(--motion-fast) var(--ease-out);
+}
+
+.splitter:hover::after,
+.splitter:focus-visible::after,
+.splitter:active::after {
+  opacity: 1;
+}
+
+.splitter:focus-visible {
+  outline: none;
+}
