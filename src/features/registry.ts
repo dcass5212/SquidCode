@@ -32,6 +32,7 @@ export function createRegistry(list: Feature[]) {
   return {
     sidebarPanels: () => list.flatMap((f) => f.sidebarPanels ?? []),
     commands: () => list.flatMap((f) => f.commands ?? []),
+    toolbarItems: () => list.flatMap((f) => f.toolbarItems ?? []),
     statusBarItems: (side: 'left' | 'right') =>
       list.flatMap((f) => f.statusBarItems ?? []).filter((i) => i.side === side),
     /** Picks the handler with the highest positive match score for this path. */

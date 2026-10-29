@@ -1,6 +1,7 @@
-import { useDocuments } from '../../core/stores/documents';
 import type { Feature } from '../types';
 import { EditorPane } from './EditorPane';
+import { saveActive } from './saveActive';
+import { SaveButton } from './SaveButton';
 
 export const editor: Feature = {
   id: 'editor',
@@ -11,10 +12,8 @@ export const editor: Feature = {
       id: 'file.save',
       title: 'Save',
       keybinding: 'Ctrl+S',
-      run: () => {
-        const { activePath, save } = useDocuments.getState();
-        if (activePath) void save(activePath);
-      },
+      run: saveActive,
     },
   ],
+  toolbarItems: [{ id: 'save', component: SaveButton }],
 };

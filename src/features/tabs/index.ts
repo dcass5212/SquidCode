@@ -22,7 +22,19 @@ export const tabs: Feature = {
         if (activePath) void close(activePath);
       },
     },
-    { id: 'tab.next', title: 'Next tab', keybinding: 'Ctrl+Tab', run: () => cycle(1) },
-    { id: 'tab.previous', title: 'Previous tab', keybinding: 'Ctrl+Shift+Tab', run: () => cycle(-1) },
+    {
+      id: 'tab.next',
+      title: 'Next tab',
+      keybinding: 'Ctrl+Tab',
+      mouseButton: 4,
+      run: () => cycle(1),
+    },
+    {
+      id: 'tab.previous',
+      title: 'Previous tab',
+      keybinding: 'Ctrl+Shift+Tab',
+      mouseButton: 3,
+      run: () => cycle(-1),
+    },
   ],
 };

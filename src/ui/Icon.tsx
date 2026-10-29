@@ -10,6 +10,7 @@ import {
   Globe,
   PanelLeft,
   RotateCw,
+  Save,
   X,
   type LucideIcon,
 } from 'lucide-react';
@@ -27,6 +28,7 @@ const icons = {
   globe: Globe,
   'panel-left': PanelLeft,
   'rotate-cw': RotateCw,
+  save: Save,
   x: X,
 } satisfies Record<string, LucideIcon>;
 

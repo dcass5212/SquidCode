@@ -2,6 +2,7 @@ import { useEffect, useState, type CSSProperties } from 'react';
 import { SIDEBAR_MAX, SIDEBAR_MIN, useLayout } from '../core/stores/layout';
 import { matchesKeybinding } from '../core/keybindings';
 import { useDocuments } from '../core/stores/documents';
+import { useDialog } from '../core/stores/dialog';
 import { useWorkspace } from '../core/stores/workspace';
 import { registry } from '../features/registry';
 import { Button } from '../ui/Button';
@@ -18,6 +19,7 @@ export function Shell() {
   const panels = registry.sidebarPanels();
   const left = registry.statusBarItems('left');
   const right = registry.statusBarItems('right');
+  const toolbar = registry.toolbarItems();
 
   const { sidebarWidth, sidebarCollapsed, setSidebarWidth, toggleSidebar } = useLayout();
   const root = useWorkspace((s) => s.root);
@@ -41,8 +43,23 @@ export function Shell() {
         }
       }
     };
+    // Side mouse buttons trigger commands that declare `mouseButton`. Cancelling mousedown as well as
+    // mouseup keeps the webview from treating them as history navigation.
+    const onMouseButton = (e: MouseEvent) => {
+      const command = registry.commands().find((c) => c.mouseButton === e.button);
+      if (!command) return;
+      e.preventDefault();
+      // A modal is waiting on an answer about the current tab; don't switch it underneath.
+      if (e.type === 'mouseup' && !useDialog.getState().current) command.run();
+    };
     window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
+    window.addEventListener('mousedown', onMouseButton);
+    window.addEventListener('mouseup', onMouseButton);
+    return () => {
+      window.removeEventListener('keydown', onKeyDown);
+      window.removeEventListener('mousedown', onMouseButton);
+      window.removeEventListener('mouseup', onMouseButton);
+    };
   }, []);
 
   useCloseGuard();
@@ -84,6 +101,9 @@ export function Shell() {
             <Icon name="panel-left" />
           </button>
           <TabBar />
+          {toolbar.map(({ id, component: Item }) => (
+            <Item key={id} />
+          ))}
         </div>
         <div className={hasActiveDoc ? styles.document : styles.content}>
           {hasActiveDoc ? (

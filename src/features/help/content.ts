@@ -1,6 +1,7 @@
 /** Shortcuts that are not registry commands: the shell's own and CodeMirror's defaults. */
 export const EXTRA_SHORTCUTS: { title: string; keys: string }[] = [
   { title: 'Toggle sidebar', keys: 'Ctrl+B' },
+  { title: 'Previous / next tab', keys: 'Mouse back / forward' },
   { title: 'Find in file', keys: 'Ctrl+F' },
   { title: 'Undo', keys: 'Ctrl+Z' },
   { title: 'Redo', keys: 'Ctrl+Y' },

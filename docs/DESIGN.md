@@ -34,7 +34,7 @@ Direction: **clean, minimal, calm** (Notion/Obsidian-adjacent). Content first, c
 
 ## Tabs
 
-Slim tabs, dirty dot instead of close-x when unsaved, middle-click to close, Ctrl+Tab cycling.
+Slim tabs, dirty dot instead of close-x when unsaved, middle-click to close, Ctrl+Tab cycling, mouse back/forward buttons for previous/next tab.
 
 ## Accessibility
 

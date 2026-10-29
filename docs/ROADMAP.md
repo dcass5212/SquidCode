@@ -37,6 +37,7 @@ Work one milestone at a time. Each ends with: app runs, typecheck/lint pass, sho
 
 - File watcher with external-change prompt, settings (theme, font size) persisted, restore last folder and open file tabs (Web tabs already restore per folder; reuse that when restoring the folder), keyboard shortcuts, app icon, installer build.
 - Known gaps to close: root-absolute references (`/css/a.css`) in served HTML 404; unsaved edits are not shown in the HTML preview until saved; `#anchor` links in the Markdown preview do nothing; sidebar width and hidden toggle are not persisted.
+- Small additions: toolbar Save button (enabled when dirty); mouse back/forward buttons switch to the previous/next tab.
 
 ## Later (only on request)
 
